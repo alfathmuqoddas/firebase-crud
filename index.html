@@ -16,15 +16,15 @@
         <div class="container">
             <a class="navbar-brand" href="#">Firebase Project</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
+          <span class="navbar-toggler-icon"></span>
+        </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-account">Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="#" id="log-out">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-create">Create Guide</a>
@@ -70,11 +70,11 @@
                 <div class="modal-body">
                     <form id="create-guide">
                         <div class="form-floating mb-3">
-                          <input type="text" class="form-control" id="guide-title" placeholder="Title" required>
-                          <label for="signin-email">Guide Title</label>
+                            <input type="text" class="form-control" id="guide-title" placeholder="Title" required>
+                            <label for="signin-email">Guide Title</label>
                         </div>
                         <div class="mb-3">
-                          <textarea class="form-control" id="guide-content" placeholder="Create Guide" rows="3"></textarea>
+                            <textarea class="form-control" id="guide-content" placeholder="Create Guide" rows="3"></textarea>
                         </div>
                         <input type="submit" value="Create" class="btn btn-primary">
                     </form>
@@ -94,12 +94,12 @@
                 <div class="modal-body">
                     <form id="signin-form">
                         <div class="form-floating mb-3">
-                          <input type="email" class="form-control" id="sigin-email" placeholder="name@example.com" required>
-                          <label for="signin-email">Email address</label>
+                            <input type="email" class="form-control" id="signin-email" placeholder="name@example.com" required>
+                            <label for="signin-email">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                          <input type="password" class="form-control" id="sigin-pass" placeholder="Create Password" required>
-                          <label for="sigin-pass">Your Password</label>
+                            <input type="password" class="form-control" id="signin-pass" placeholder="Create Password" required>
+                            <label for="sigin-pass">Your Password</label>
                         </div>
                         <input type="submit" value="Log In" class="btn btn-primary">
                     </form>
@@ -119,13 +119,14 @@
                 <div class="modal-body">
                     <form id="signup-form">
                         <div class="form-floating mb-3">
-                          <input type="email" class="form-control" id="signup-email" placeholder="name@example.com" required>
-                          <label for="signup-email">Email address</label>
+                            <input type="email" class="form-control" id="signup-email" placeholder="name@example.com" required>
+                            <label for="signup-email">Email address</label>
                         </div>
                         <div class="form-floating mb-3">
-                          <input type="password" class="form-control" id="signup-pass" placeholder="Create Password" required>
-                          <label for="signup-pass">Create Password</label>
+                            <input type="password" class="form-control" id="signup-pass" placeholder="Create Password" required>
+                            <label for="signup-pass">Create Password</label>
                         </div>
+                        <div class="signup-message"></div>
                         <input type="submit" value="Sign Up" class="btn btn-primary">
                     </form>
                 </div>
@@ -136,69 +137,34 @@
     <!--Guide Accordion-->
     <div class="py-5">
         <div class="container">
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Accordion Item #1
-                  </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                    Accordion Item #2
-                  </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                    Accordion Item #3
-                  </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                  <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-                </div>
-              </div>
+            <div class="accordion accordion-flush" id="guides-accordion">
+                
             </div>
         </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyCJeLihLSDhdtP7oYdkffhW2GtCWChRLog",
-        authDomain: "fir-project-66397.firebaseapp.com",
-        projectId: "fir-project-66397",
-        storageBucket: "fir-project-66397.appspot.com",
-        messagingSenderId: "1075650924441",
-        appId: "1:1075650924441:web:9b5fee3e099815f5294d08",
-        measurementId: "G-QR9XXQSXDN"
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJeLihLSDhdtP7oYdkffhW2GtCWChRLog",
+            authDomain: "fir-project-66397.firebaseapp.com",
+            projectId: "fir-project-66397",
+            storageBucket: "fir-project-66397.appspot.com",
+            messagingSenderId: "1075650924441",
+            appId: "1:1075650924441:web:9b5fee3e099815f5294d08",
+            measurementId: "G-QR9XXQSXDN"
+          };
+    
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          const auth = firebase.auth();
+          const db = firebase.firestore();
     </script>
-    <script scr="script/auth.js"></script>
-    <script scr="script/index.js"></script>
+    <script src="script/auth.js" defer></script>
+    <script src="script/index.js" defer></script>
+    <script src="script/db.js" defer></script>
 </body>
 
 </html>
