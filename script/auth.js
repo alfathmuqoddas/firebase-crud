@@ -1,9 +1,15 @@
 // check auth status
 auth.onAuthStateChanged(user=>{
 	if(user){
-		console.log("user logged in: ", user)
+		db.collection('guides').onSnapshot(snapshot=>{
+			setupGuides(snapshot.docs);
+			setupUI(user);
+		}, err => {
+			console.log(error.message);
+		});
 	} else {
-		console.log("user logged out")
+		setupUI();
+		setupGuides([]);
 	}
 });
 
@@ -14,21 +20,17 @@ signupForm.addEventListener('submit', (e)=>{
 	const email = signupForm['signup-email'].value;
 	const pass = signupForm['signup-pass'].value;
 
-	console.log(email, pass);
 	auth.createUserWithEmailAndPassword(email, pass)
-	  .then((userCredential) => {
-	    // Signed in 
-	    var user = userCredential.user;
-	    console.log("user sign up success");
-	    console.log(user);
-	    signupForm.reset();
+	  .then(cred => {
+	    return db.collection('users').doc(cred.user.uid).set({
+			bio: signupForm['signup-bio'].value
+		})
+	  }).then(()=>{
+	  	signupForm.reset();
+	    var signupModal = document.querySelector("#modal-signup");
+	    bootstrap.Modal.getInstance(signupModal).hide();
 	  })
-	  .catch((error) => {
-	    const errorCode = error.code;
-	    const errorMessage = error.message;
-	    console.log(errorMessage);
-	  });
-})
+});
 
 //sign in
 const signinForm = document.querySelector("#signin-form");
@@ -41,7 +43,10 @@ signinForm.addEventListener('submit', (e)=>{
 	    // Signed in
 	    var user = userCredential.user;
 	    console.log("user sign in success");
-	    signupForm.reset();
+	    signinForm.reset();
+
+	    var signinModal = document.querySelector("#modal-login");
+	    bootstrap.Modal.getInstance(signinModal).hide();
 	    // ...
 	  })
 	  .catch((error) => {
@@ -55,5 +60,6 @@ signinForm.addEventListener('submit', (e)=>{
 const signoutButton = document.querySelector("#log-out");
 signoutButton.addEventListener('click', (e)=>{
 	e.preventDefault();
-	firebase.auth().signOut()
+	firebase.auth().signOut();
 });
+

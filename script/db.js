@@ -1,3 +1,3 @@
-db.collection('guides').get().then(snapshot=>{
+/*db.collection('guides').get().then(snapshot=>{
 	setupGuides(snapshot.docs);
-})
+});*/

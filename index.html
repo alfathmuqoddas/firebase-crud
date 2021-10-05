@@ -12,7 +12,7 @@
 <body>
 
     <!--navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="#">Firebase Project</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,20 +20,20 @@
         </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-account">Account</a>
+                    <li class="nav-item logged-in" style="display:none;">
+                        <a class="nav-link text-light" href="#" data-bs-toggle="modal" data-bs-target="#modal-account">Account</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="log-out">Logout</a>
+                    <li class="nav-item logged-in" style="display:none;">
+                        <a class="nav-link text-light" href="#" id="log-out">Logout</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-create">Create Guide</a>
+                    <li class="nav-item logged-in" style="display:none;">
+                        <a class="nav-link text-light" href="#" data-bs-toggle="modal" data-bs-target="#modal-create">Create Guide</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-login">Login</a>
+                    <li class="nav-item logged-out" style="display:none;">
+                        <a class="nav-link text-light" href="#" data-bs-toggle="modal" data-bs-target="#modal-login">Login</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-signup">Sign Up</a>
+                    <li class="nav-item logged-out" style="display:none;">
+                        <a class="nav-link text-light" href="#" data-bs-toggle="modal" data-bs-target="#modal-signup">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -48,12 +48,8 @@
                     <h5 class="modal-title" id="modal-account-label">Account Info</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body account-details">
                     This is Modal Account
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -126,6 +122,10 @@
                             <input type="password" class="form-control" id="signup-pass" placeholder="Create Password" required>
                             <label for="signup-pass">Create Password</label>
                         </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="signup-bio" placeholder="Bio" required>
+                            <label for="signup-bio">Enter you One Line Bio</label>
+                        </div>
                         <div class="signup-message"></div>
                         <input type="submit" value="Sign Up" class="btn btn-primary">
                     </form>
@@ -137,8 +137,8 @@
     <!--Guide Accordion-->
     <div class="py-5">
         <div class="container">
-            <div class="accordion accordion-flush" id="guides-accordion">
-                
+            <div class="accordion" id="guides-accordion">
+                <!--array here-->
             </div>
         </div>
     </div>
