@@ -6,7 +6,7 @@ const setupGuides = (data) => {
 		let html = '';
 		data.forEach(doc => {
 			const guide = doc.data();
-			
+
 			const lists = `
 			<div class="accordion-item">
 	            <h2 class="accordion-header" id="flush-heading${guide.id}">
